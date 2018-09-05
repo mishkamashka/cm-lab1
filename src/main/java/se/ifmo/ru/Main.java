@@ -38,7 +38,7 @@ public class Main {
         System.out.println("Choose input type:\n(0 - cmd, 1 - from file, 2 - random, 3 - exit)"); //TODO: exit with 3
         inputType = -1;
         while (true) {
-            while (inputType < 0 || inputType > 2) {
+            while (inputType < 0 || inputType > 3) {
                 inputType = scanner.nextByte();
             }
             break;
