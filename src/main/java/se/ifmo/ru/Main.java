@@ -6,13 +6,30 @@ public class Main {
 
     private static Input input = null;
     private static Scanner scanner = new Scanner(System.in);
-    private static byte inputType = -1;
     private static double[][] matrix = null;
 
     public static void main(String[] args) {
         while (true) {
             while (matrix == null) {
-                getInputSource();
+                System.out.println("Choose input type:\n0 - cmd\n1 - from file\n2 - random");
+                InputType type = null;
+                while (true) {
+                    while (type == null) {
+                        type = InputType.getByValue(scanner.nextLine());
+                    }
+                    break;
+                }
+                switch (type) {
+                    case CMD_INPUT:
+                        input = new CMDInput(scanner);
+                        break;
+                    case FILE_INPUT:
+                        input = new FileInput(scanner);
+                        break;
+                    case RND_INPUT:
+                        input = new RandomInput();
+                        break;
+                }
                 switch (input.createInput()) {
                     case 1:
                         System.out.println("Error getting from CMD");
@@ -31,30 +48,6 @@ public class Main {
             break;
         }
 
-
     }
 
-    private static void getInputSource() {
-        System.out.println("Choose input type:\n(0 - cmd, 1 - from file, 2 - random, 3 - exit)"); //TODO: exit with 3
-        inputType = -1;
-        while (true) {
-            while (inputType < 0 || inputType > 3) {
-                inputType = scanner.nextByte();
-            }
-            break;
-        }
-        switch (inputType) {
-            case 0:
-                input = new CMDInput(scanner);
-                break;
-            case 1:
-                input = new FileInput(scanner);
-                break;
-            case 2:
-                input = new RandomInput();
-                break;
-            case 3:
-                System.exit(0); //TODO
-        }
-    }
 }
