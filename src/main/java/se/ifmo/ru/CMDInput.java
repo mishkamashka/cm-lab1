@@ -1,5 +1,6 @@
 package se.ifmo.ru;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CMDInput implements Input {
@@ -7,22 +8,32 @@ public class CMDInput implements Input {
     private Scanner scanner;
     private double[][] matrix = null;
 
-    CMDInput(Scanner scanner){
+    CMDInput(Scanner scanner) {
         this.scanner = scanner;
     }
 
     public int createInput() {
         do {
             System.out.println("Enter N (between 2 and 20):\n(Enter 1 to exit)");
-            n = scanner.nextInt();
+            try {
+                n = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Enter integer number as N");
+                return 3;
+            }
         } while (n < 1 || n > 20);
         if (n == 1)
             return 3;
         matrix = new double[n][n];
         System.out.println("Enter coefficients in double format:");
-        for (int i = 0; i < n; i++){
-            for (int k = 0; k < n; k++){
-                matrix[i][k] = scanner.nextDouble(); //TODO: one line or one by one? will work?
+        for (int i = 0; i < n; i++) {
+            for (int k = 0; k < n; k++) {
+                try {
+                    matrix[i][k] = scanner.nextDouble();
+                } catch (InputMismatchException e) {
+                    System.out.println("Only use numbers to enter coefficients");
+                    return 3;
+                }
             }
         }
         return 0;
