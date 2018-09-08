@@ -11,10 +11,10 @@ public class Main {
     public static void main(String[] args) {
         while (true) {
             while (matrix == null) {
-                System.out.println("Choose input type:\n0 - cmd\n1 - from file\n2 - random");
                 InputType type = null;
                 while (true) {
                     while (type == null) {
+                        System.out.println("Choose input type:\n0 - cmd\n1 - from file\n2 - random");
                         type = InputType.getByValue(scanner.nextLine());
                     }
                     break;
@@ -44,7 +44,8 @@ public class Main {
                         matrix = input.getInput();
                 }
             }
-            System.out.println("matrix received");
+            MatrixPrinter printer = new MatrixPrinter(matrix);
+            printer.print();
             break;
         }
 
