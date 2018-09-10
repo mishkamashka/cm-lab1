@@ -45,7 +45,13 @@ public class Main {
                 }
             }
             MatrixPrinter printer = new MatrixPrinter(matrix);
+            GaussSolver solver = new GaussSolver(matrix);
             printer.print();
+            solver.createTriangleMatrix();
+            MatrixPrinter matrixPrinter = new MatrixPrinter(solver.getTriangleMatrix());
+            System.out.println();
+            matrixPrinter.print();
+            System.out.println(solver.findDeterminant());
             break;
         }
 
