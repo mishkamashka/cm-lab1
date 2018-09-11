@@ -5,7 +5,6 @@ public class GaussSolver {
     private double[][] matrix;
     private double[] vectorB;
     private double[][] triangularMatrix = null;
-    private double[] solution;
     private double det = 1;
 
     GaussSolver(double[][] matrix, double[] vectorB) {
@@ -29,7 +28,7 @@ public class GaussSolver {
         if (triangularMatrix == null) {
             this.createTriangularMatrix();
         }
-        solution = new double[triangularMatrix.length];
+        double[] solution = new double[triangularMatrix.length];
         for (int i = matrix.length - 1; i >= 0; i--){
             solution[i] = vectorB[i];
             for (int j = i+1; j < triangularMatrix.length; j++) {
@@ -51,6 +50,9 @@ public class GaussSolver {
     }
 
     public double getDeterminant() {
+        if (triangularMatrix == null) {
+            this.createTriangularMatrix();
+        }
         for (int i = 0; i < triangularMatrix.length; i++) {
             det *= triangularMatrix[i][i];
         }
