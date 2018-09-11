@@ -7,6 +7,7 @@ public class FileInput implements Input {
     private Scanner scanner;
     private String filepath = "";
     private double[][] matrix = null;
+    private double[] vectorB = null;
 
     FileInput(Scanner scanner) {
         this.scanner = scanner;
@@ -20,8 +21,12 @@ public class FileInput implements Input {
         return 0;
     }
 
-    public double[][] getInput() {
+    public double[][] getMatrixInput() {
         return matrix;
+    }
+
+    public double[] getVectorBInput() {
+        return vectorB;
     }
 
     private String getFilepath() {

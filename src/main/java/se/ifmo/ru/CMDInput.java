@@ -7,9 +7,18 @@ public class CMDInput implements Input {
     private int n = 0;
     private Scanner scanner;
     private double[][] matrix = null;
+    private double[] vectorB = null;
 
     CMDInput(Scanner scanner) {
         this.scanner = scanner;
+    }
+
+    public double[][] getMatrixInput() {
+        return matrix;
+    }
+
+    public double[] getVectorBInput() {
+        return vectorB;
     }
 
     public int createInput() {
@@ -25,7 +34,8 @@ public class CMDInput implements Input {
         if (n == 1)
             return 3;
         matrix = new double[n][n];
-        System.out.println("Enter coefficients in double format:");
+        vectorB = new double[n];
+        System.out.println("Enter coefficients in double format (use only numbers to enter values):");
         for (int i = 0; i < n; i++) {
             for (int k = 0; k < n; k++) {
                 try {
@@ -36,11 +46,16 @@ public class CMDInput implements Input {
                 }
             }
         }
+        System.out.println("Enter vector B in double format (use only numbers to enter values):");
+        for (int i = 0; i < n; i++) {
+            try {
+                vectorB[i] = scanner.nextDouble();
+            } catch (InputMismatchException e) {
+                System.out.println("Only use numbers to enter values");
+                return 3;
+            }
+        }
         return 0;
-    }
-
-    public double[][] getInput() {
-        return matrix;
     }
 
 }

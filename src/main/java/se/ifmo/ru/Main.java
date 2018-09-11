@@ -7,10 +7,11 @@ public class Main {
     private static Input input = null;
     private static Scanner scanner = new Scanner(System.in);
     private static double[][] matrix = null;
+    private static double[] vectorB = null;
 
     public static void main(String[] args) {
         while (true) {
-            while (matrix == null) {
+            while (matrix == null || vectorB == null) {
                 InputType type = null;
                 while (true) {
                     while (type == null) {
@@ -41,17 +42,24 @@ public class Main {
                         System.out.println("Going back...");
                         break;
                     default:
-                        matrix = input.getInput();
+                        matrix = input.getMatrixInput();
+                        vectorB = input.getVectorBInput();
                 }
             }
-            MatrixPrinter printer = new MatrixPrinter(matrix);
-            GaussSolver solver = new GaussSolver(matrix);
-            printer.print();
-            solver.createTriangleMatrix();
-            MatrixPrinter matrixPrinter = new MatrixPrinter(solver.getTriangleMatrix());
+
+            System.out.println("Initial matrix:");
+            MatrixPrinter.print(matrix, vectorB);
+
+            GaussSolver solver = new GaussSolver(matrix, vectorB);
+            System.out.println("Triangular matrix:");
+            MatrixPrinter.print(solver.getTriangularMatrix());
+
+            System.out.println("Determinant: " + solver.getDeterminant());
             System.out.println();
-            matrixPrinter.print();
-            System.out.println(solver.findDeterminant());
+
+            System.out.println("Solution vector:");
+            MatrixPrinter.print(solver.solve());
+
             break;
         }
 

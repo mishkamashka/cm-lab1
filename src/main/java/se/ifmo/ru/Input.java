@@ -2,7 +2,9 @@ package se.ifmo.ru;
 
 interface Input {
 
-    double[][] getInput();
+    double[][] getMatrixInput();
+
+    double[] getVectorBInput();
 
     int createInput();
 }
