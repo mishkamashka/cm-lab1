@@ -1,9 +1,13 @@
 package se.ifmo.ru;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 public class GaussSolver {
 
     private double[][] matrix;
     private double[] vectorB;
+    private double[] solution = null;
     private double[][] triangularMatrix = null;
     private double[] modifiedVectorB = null;
     private double det = 1;
@@ -14,8 +18,17 @@ public class GaussSolver {
     }
 
     private void createTriangularMatrix() {
-        triangularMatrix = matrix.clone();
-        modifiedVectorB = vectorB.clone();
+
+        triangularMatrix = new double[matrix.length][matrix.length];
+        modifiedVectorB = new double[vectorB.length];
+        for (int i = 0; i < matrix.length; i++) {
+            modifiedVectorB[i] = vectorB[i];
+            for (int j = 0; j < matrix.length; j++) {
+                triangularMatrix[i][j] = matrix[i][j];
+            }
+        }
+//        triangularMatrix = matrix.clone();
+//        modifiedVectorB = vectorB.clone();
 
         for (int i = 0; i < matrix.length; i++) {
             for (int k = i + 1; k < matrix.length; k++) {
@@ -31,7 +44,7 @@ public class GaussSolver {
         if (triangularMatrix == null) {
             this.createTriangularMatrix();
         }
-        double[] solution = new double[triangularMatrix.length];
+        solution = new double[triangularMatrix.length];
         for (int i = matrix.length - 1; i >= 0; i--) {
             solution[i] = modifiedVectorB[i];
             for (int j = i + 1; j < triangularMatrix.length; j++) {
@@ -61,5 +74,16 @@ public class GaussSolver {
             det *= triangularMatrix[i][i];
         }
         return det;
+    }
+
+    public double[] getDiscrepancy() {
+        double discrepancy[] = new double[solution.length];
+        for (int i = 0; i < discrepancy.length; i++) {
+            for (int j = 0; j < discrepancy.length; j++) {
+                discrepancy[i] += matrix[i][j] * solution[j];
+            }
+            discrepancy[i] = vectorB[i] - discrepancy[i];
+        }
+        return discrepancy;
     }
 }
