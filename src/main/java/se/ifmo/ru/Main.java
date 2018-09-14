@@ -60,6 +60,9 @@ public class Main {
             System.out.println("Solution vector:");
             MatrixPrinter.print(solver.solve());
 
+            System.out.println("Discrepancy vector:");
+            MatrixPrinter.printAccurate(solver.getDiscrepancy());
+
             break;
         }
 

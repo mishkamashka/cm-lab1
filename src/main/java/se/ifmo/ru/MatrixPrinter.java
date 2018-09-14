@@ -1,7 +1,5 @@
 package se.ifmo.ru;
 
-import java.sql.SQLOutput;
-
 public class MatrixPrinter {
 
     public static void print(double[][] matrix, double[] vectorB) {
@@ -32,6 +30,13 @@ public class MatrixPrinter {
         for (int i = 0; i < matrix.length; i++) {
             System.out.printf("%.3f", matrix[i]);
             System.out.println();
+        }
+        System.out.println();
+    }
+
+    public static void printAccurate(double[] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            System.out.println(matrix[i]);
         }
         System.out.println();
     }

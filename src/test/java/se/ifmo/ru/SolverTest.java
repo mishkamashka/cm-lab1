@@ -14,14 +14,6 @@ public class SolverTest {
         System.out.println("Triangular matrix:");
         MatrixPrinter.print(solver.getTriangularMatrix(), solver.getModifiedVectorB());
 
-        System.out.println("Determinant: " + solver.getDeterminant());
-        System.out.println();
-
-        System.out.println("Solution vector:");
-        MatrixPrinter.print(solver.solve());
-
-        System.out.println("Discrepancy vector:");
-        MatrixPrinter.print(solver.getDiscrepancy());
     }
 
 }
