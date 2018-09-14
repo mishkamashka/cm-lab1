@@ -36,7 +36,8 @@ public class MatrixPrinter {
 
     public static void printAccurate(double[] matrix) {
         for (int i = 0; i < matrix.length; i++) {
-            System.out.println(matrix[i]);
+            System.out.printf("%.20f", matrix[i]);
+            System.out.println();
         }
         System.out.println();
     }
