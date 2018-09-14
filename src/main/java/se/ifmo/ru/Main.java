@@ -52,7 +52,7 @@ public class Main {
 
             GaussSolver solver = new GaussSolver(matrix, vectorB);
             System.out.println("Triangular matrix:");
-            MatrixPrinter.print(solver.getTriangularMatrix());
+            MatrixPrinter.print(solver.getTriangularMatrix(), solver.getModifiedVectorB());
 
             System.out.println("Determinant: " + solver.getDeterminant());
             System.out.println();
