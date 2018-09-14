@@ -33,7 +33,7 @@ public class GaussSolver {
         }
         double[] solution = new double[triangularMatrix.length];
         for (int i = matrix.length - 1; i >= 0; i--) {
-            solution[i] = vectorB[i];
+            solution[i] = modifiedVectorB[i];
             for (int j = i + 1; j < triangularMatrix.length; j++) {
                 solution[i] -= solution[j] * triangularMatrix[i][j];
             }
