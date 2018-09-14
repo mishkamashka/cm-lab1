@@ -1,6 +1,8 @@
 package se.ifmo.ru;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class FileInput implements Input {
@@ -8,6 +10,10 @@ public class FileInput implements Input {
     private String filepath = "";
     private double[][] matrix = null;
     private double[] vectorB = null;
+
+    private String filename = System.getenv("FILENAME");
+    private String currentdir = System.getProperty("user.dir");
+    private File file;
 
     FileInput(Scanner scanner) {
         this.scanner = scanner;
@@ -17,7 +23,40 @@ public class FileInput implements Input {
         filepath = getFilepath();
         if (filepath.equals("3"))
             return 3;
-        File file = new File(filepath); //TODO: check this constructor, try-catch, get n and matrix from file
+        file = new File(filepath);
+
+        try {
+            scanner = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found. Check the filepath.");
+            return 3;
+        }
+
+        int n = scanner.nextInt();
+        matrix = new double[n][n];
+        vectorB = new double[n];
+
+        for (int i = 0; i < n; i++) {
+            for (int k = 0; k < n; k++) {
+                try {
+                    matrix[i][k] = scanner.nextDouble();
+                } catch (InputMismatchException e) {
+                    System.out.println("Check the input file. Only numbers can be used as coefficients");
+                    return 3;
+                }
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            try {
+                vectorB[i] = scanner.nextDouble();
+            } catch (InputMismatchException e) {
+                System.out.println("Check the input file. Only numbers can be used as coefficients");
+                return 3;
+            }
+        }
+
+
         return 0;
     }
 
