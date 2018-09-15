@@ -42,6 +42,7 @@ public class FileInput implements Input {
                 vectorB[i] = scanner.nextDouble();
             }
         } catch (InputMismatchException e) {
+            scanner.close();
             System.out.println("Only numbers can be used as coefficients");
             return 3;
         }

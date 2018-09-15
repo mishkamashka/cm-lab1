@@ -47,6 +47,7 @@ public class CMDInput implements Input {
                 vectorB[i] = scanner.nextDouble();
             }
         } catch (InputMismatchException e) {
+            scanner.close();
             System.out.println("Only use numbers to enter coefficients");
             return 3;
         }
