@@ -36,24 +36,19 @@ public class CMDInput implements Input {
         matrix = new double[n][n];
         vectorB = new double[n];
         System.out.println("Enter coefficients in double format (use only numbers to enter values):");
-        for (int i = 0; i < n; i++) {
-            for (int k = 0; k < n; k++) {
-                try {
+        try {
+            for (int i = 0; i < n; i++) {
+                for (int k = 0; k < n; k++) {
                     matrix[i][k] = scanner.nextDouble();
-                } catch (InputMismatchException e) {
-                    System.out.println("Only use numbers to enter coefficients");
-                    return 3;
                 }
             }
-        }
-        System.out.println("Enter vector B in double format (use only numbers to enter values):");
-        for (int i = 0; i < n; i++) {
-            try {
+            System.out.println("Enter vector B in double format (use only numbers to enter values):");
+            for (int i = 0; i < n; i++) {
                 vectorB[i] = scanner.nextDouble();
-            } catch (InputMismatchException e) {
-                System.out.println("Only use numbers to enter values");
-                return 3;
             }
+        } catch (InputMismatchException e) {
+            System.out.println("Only use numbers to enter coefficients");
+            return 3;
         }
         return 0;
     }

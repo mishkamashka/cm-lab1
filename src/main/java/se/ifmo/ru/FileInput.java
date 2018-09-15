@@ -10,9 +10,6 @@ public class FileInput implements Input {
     private String filepath = "";
     private double[][] matrix = null;
     private double[] vectorB = null;
-
-    private String filename = System.getenv("FILENAME");
-    private String currentdir = System.getProperty("user.dir");
     private File file;
 
     FileInput(Scanner scanner) {
@@ -32,31 +29,22 @@ public class FileInput implements Input {
             return 3;
         }
 
-        int n = scanner.nextInt();
-        matrix = new double[n][n];
-        vectorB = new double[n];
-
-        for (int i = 0; i < n; i++) {
-            for (int k = 0; k < n; k++) {
-                try {
+        try {
+            int n = scanner.nextInt();
+            matrix = new double[n][n];
+            vectorB = new double[n];
+            for (int i = 0; i < n; i++) {
+                for (int k = 0; k < n; k++) {
                     matrix[i][k] = scanner.nextDouble();
-                } catch (InputMismatchException e) {
-                    System.out.println("Check the input file. Only numbers can be used as coefficients");
-                    return 3;
                 }
             }
-        }
-
-        for (int i = 0; i < n; i++) {
-            try {
+            for (int i = 0; i < n; i++) {
                 vectorB[i] = scanner.nextDouble();
-            } catch (InputMismatchException e) {
-                System.out.println("Check the input file. Only numbers can be used as coefficients");
-                return 3;
             }
+        } catch (InputMismatchException e) {
+            System.out.println("Only numbers can be used as coefficients");
+            return 3;
         }
-
-
         return 0;
     }
 
