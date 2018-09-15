@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
 
     private static Input input = null;
-    private static Scanner scanner;
+    private static Scanner scanner = new Scanner(System.in);;
     private static double[][] matrix = null;
     private static double[] vectorB = null;
 
@@ -13,7 +13,6 @@ public class Main {
         while (true) {
             while (matrix == null || vectorB == null) {
                 InputType type = null;
-                scanner = new Scanner(System.in);
                 while (true) {
                     while (type == null) {
                         System.out.println("Choose input type:\n0 - cmd\n1 - from file\n2 - random");
