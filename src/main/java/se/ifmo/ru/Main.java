@@ -3,7 +3,7 @@ package se.ifmo.ru;
 import java.util.Scanner;
 
 public class Main {
-
+//TODO: less than 20 check
     private static Input input = null;
     private static Scanner scanner = new Scanner(System.in);;
     private static double[][] matrix = null;
@@ -14,8 +14,8 @@ public class Main {
             while (matrix == null || vectorB == null) {
                 InputType type = null;
                 while (true) {
+                    System.out.println("Choose input type:\n0 - cmd\n1 - from file\n2 - random");
                     while (type == null) {
-                        System.out.println("Choose input type:\n0 - cmd\n1 - from file\n2 - random");
                         type = InputType.getByValue(scanner.nextLine());
                     }
                     break;
