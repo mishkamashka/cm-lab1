@@ -14,8 +14,10 @@ public class GaussSolver {
         this.vectorB = vectorB;
     }
 
-    private void createTriangularMatrix() {
-
+    private void createTriangularMatrix() throws IllegalArgumentException {
+        if (!checkCoef()) {
+            throw new IllegalArgumentException("Coefficients can not be equal zero.");
+        }
         triangularMatrix = new double[matrix.length][matrix.length];
         modifiedVectorB = new double[vectorB.length];
         for (int i = 0; i < matrix.length; i++) {
@@ -24,8 +26,6 @@ public class GaussSolver {
                 triangularMatrix[i][j] = matrix[i][j];
             }
         }
-//        triangularMatrix = matrix.clone();
-//        modifiedVectorB = vectorB.clone();
 
         for (int i = 0; i < matrix.length; i++) {
             for (int k = i + 1; k < matrix.length; k++) {
@@ -82,5 +82,15 @@ public class GaussSolver {
             discrepancy[i] = vectorB[i] - discrepancy[i];
         }
         return discrepancy;
+    }
+
+    private boolean checkCoef() {
+        for (int i = 0; i < matrix.length; i++){
+            for (int j = 0; j < matrix.length; j++){
+                if (matrix[i][j] == 0)
+                    return false;
+            }
+        }
+        return true;
     }
 }

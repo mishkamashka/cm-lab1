@@ -50,19 +50,22 @@ public class Main {
             System.out.println("Initial matrix:");
             MatrixPrinter.print(matrix, vectorB);
 
-            GaussSolver solver = new GaussSolver(matrix, vectorB);
-            System.out.println("Triangular matrix:");
-            MatrixPrinter.print(solver.getTriangularMatrix(), solver.getModifiedVectorB());
+            try {
+                GaussSolver solver = new GaussSolver(matrix, vectorB);
+                System.out.println("Triangular matrix:");
+                MatrixPrinter.print(solver.getTriangularMatrix(), solver.getModifiedVectorB());
 
-            System.out.println("Determinant: " + solver.getDeterminant());
-            System.out.println();
+                System.out.println("Determinant: " + solver.getDeterminant());
+                System.out.println();
 
-            System.out.println("Solution vector:");
-            MatrixPrinter.print(solver.solve());
+                System.out.println("Solution vector:");
+                MatrixPrinter.print(solver.solve());
 
-            System.out.println("Discrepancy vector:");
-            MatrixPrinter.printAccurate(solver.getDiscrepancy());
-
+                System.out.println("Discrepancy vector:");
+                MatrixPrinter.printAccurate(solver.getDiscrepancy());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.toString());
+            }
             break;
         }
 
