@@ -37,9 +37,12 @@ public class GaussSolver {
         }
     }
 
-    public double[] solve() {
+    public double[] solve() throws IllegalArgumentException {
         if (triangularMatrix == null) {
             this.createTriangularMatrix();
+        }
+        if (Math.abs(this.getDeterminant() - 0) < 0.0001) {
+            throw new IllegalArgumentException("Determinant equals zero");
         }
         solution = new double[triangularMatrix.length];
         for (int i = matrix.length - 1; i >= 0; i--) {
