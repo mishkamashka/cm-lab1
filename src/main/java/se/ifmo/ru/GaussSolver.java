@@ -29,6 +29,9 @@ public class GaussSolver {
 
         for (int i = 0; i < matrix.length; i++) {
             for (int k = i + 1; k < matrix.length; k++) {
+                if (triangularMatrix[i][i] == 0) {
+                    throw new IllegalArgumentException("\nDeterminant equals 0\nNo solutions can be found");
+                }
                 modifiedVectorB[k] += modifiedVectorB[i] * (-triangularMatrix[k][i]) / triangularMatrix[i][i];
                 for (int j = matrix.length - 1; j >= 0; j--) {
                     triangularMatrix[k][j] += triangularMatrix[i][j] * (-triangularMatrix[k][i]) / triangularMatrix[i][i];

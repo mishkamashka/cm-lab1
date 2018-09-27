@@ -64,7 +64,7 @@ public class Main {
                 System.out.println("Discrepancy vector:");
                 MatrixPrinter.printAccurate(solver.getDiscrepancy());
             } catch (IllegalArgumentException e) {
-                System.out.println(e.toString());
+                System.out.println(e.getMessage());
             }
             break;
         }
